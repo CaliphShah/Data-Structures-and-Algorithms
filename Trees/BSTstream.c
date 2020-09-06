@@ -106,6 +106,15 @@ void postOrder(Node* rootNode) {
     fprintf(stdout, "%d ", rootNode->data);
 }
 
+void delete_all(Node* rootNode)
+{
+    if(rootNode!=NULL)
+    {
+        delete_all(rootNode->right);
+        delete_all(rootNode->left);
+        free(rootNode);
+    }
+}
 
 
 int main(int argc, char* argv[]) {
@@ -155,6 +164,8 @@ int main(int argc, char* argv[]) {
     fprintf(stdout, "PostOrder : ");
     postOrder(rootNode);
     fprintf(stdout, "\n");
+    
+    delete_all(rootNode);
 
     return 0;
 }
